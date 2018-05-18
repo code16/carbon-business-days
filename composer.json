@@ -1,0 +1,26 @@
+{
+  "name": "code16/carbon-business-days",
+  "description": "A simple class for business days counting",
+  "authors": [{
+    "name": "Philippe Lonchampt",
+    "email": "philippe@code16.fr"
+  }],
+  "license": "MIT",
+  "require": {
+    "php": ">=7.0.0",
+    "nesbot/carbon": "^1.27"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Code16\\CarbonBusiness\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Code16\\CarbonBusiness\\Tests\\": "tests/"
+    }
+  }
+}
