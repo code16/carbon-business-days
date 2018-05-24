@@ -39,7 +39,7 @@ class FrenchHolidays
     public static function getForAlsaceMoselle(int $year): array
     {
         return static::getFor($year) + [
-            Carbon::createFromTimestamp(easter_date($year))->subDay(), // Easter Friday
+            Carbon::createFromTimestamp(easter_date($year))->subDays(2), // Easter Friday
             Carbon::createFromDate($year, 12, 26) // Saint Stephen
         ];
     }
