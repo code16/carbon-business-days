@@ -11,7 +11,7 @@ class FrenchHolidays
      * @param int $year
      * @return array
      */
-    public static function getFor(int $year): array
+    public static function getForYear(int $year): array
     {
         $holidays = [
             Carbon::createFromDate($year, 1, 1),
@@ -36,11 +36,13 @@ class FrenchHolidays
      * @param int $year
      * @return array
      */
-    public static function getForAlsaceMoselle(int $year): array
+    public static function getForAlsaceMoselleForYear(int $year): array
     {
-        return static::getFor($year) + [
-            Carbon::createFromTimestamp(easter_date($year))->subDays(2), // Easter Friday
-            Carbon::createFromDate($year, 12, 26) // Saint Stephen
-        ];
+        return array_merge(
+            static::getForYear($year), [
+                Carbon::createFromTimestamp(easter_date($year))->subDays(2), // Easter Friday
+                Carbon::createFromDate($year, 12, 26) // Saint Stephen
+            ]
+        );
     }
 }
