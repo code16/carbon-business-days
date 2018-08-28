@@ -112,4 +112,30 @@ class CarbonBusinessDaysAddToTest extends TestCase
             10
         )->format("Y-m-d"));
     }
+
+    /** @test */
+    function we_can_get_closed_days_as_an_array()
+    {
+        $date = new BusinessDays();
+
+        $date->addClosedPeriod(
+            Carbon::createFromDate(2018, 5, 15),
+            Carbon::createFromDate(2018, 5, 16)
+        );
+
+        $this->assertEquals(Carbon::createFromDate(2018, 5, 15)->startOfDay(), $date->getClosedDays()[0]);
+        $this->assertEquals(Carbon::createFromDate(2018, 5, 16)->startOfDay(), $date->getClosedDays()[1]);
+    }
+
+    /** @test */
+    function we_can_get_holidays_as_an_array()
+    {
+        $date = new BusinessDays();
+
+        $date->addHoliday(Carbon::createFromDate(2018, 5, 15));
+        $date->addHoliday(Carbon::createFromDate(2018, 5, 16));
+
+        $this->assertEquals(Carbon::createFromDate(2018, 5, 15)->startOfDay(), $date->getHolidays()[0]);
+        $this->assertEquals(Carbon::createFromDate(2018, 5, 16)->startOfDay(), $date->getHolidays()[1]);
+    }
 }

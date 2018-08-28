@@ -184,4 +184,24 @@ class BusinessDays
             && !$this->isHoliday($date)
             && !$this->isClosed($date);
     }
+
+    /**
+     * @return array
+     */
+    public function getClosedDays()
+    {
+        return array_map(function($date) {
+            return Carbon::createFromFormat('Ymd', $date)->startOfDay();
+        }, $this->closedDays);
+    }
+
+    /**
+     * @return array
+     */
+    public function getHolidays()
+    {
+        return array_map(function($date) {
+            return Carbon::createFromFormat('Ymd', $date)->startOfDay();
+        }, $this->holidays);
+    }
 }
