@@ -26,7 +26,7 @@ class FrenchHolidays
 
         $easter = Carbon::createFromTimestamp(easter_date($year));
         $holidays[] = $easter->copy()->addDay(); // Easter Monday
-        $holidays[] = $easter->copy()->addDays(40); // Ascension Tuesday
+        $holidays[] = $easter->copy()->addDays(39); // Ascension Tuesday
         $holidays[] = $easter->copy()->addDays(50); // Pentecost Monday
 
         return $holidays;
