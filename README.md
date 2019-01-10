@@ -4,6 +4,7 @@ This package aims to count business working days between two [Carbon](https://gi
 
 ## Usage
 
+```php
     $date = new BusinessDays();
     
     // Set holidays (2018-1-1 is a Monday)
@@ -26,13 +27,16 @@ This package aims to count business working days between two [Carbon](https://gi
         Carbon::createFromDate(2018, 1, 1),
         Carbon::createFromDate(2018, 1, 15)
     );
-    
+```
 Default for weekend days are saturdays and sundays, but it can be configured:
 
+```php
     $date->setWeekendDays([Carbon::SUNDAY, Carbon::MONDAY]);
+```
     
 You can also add or subtract days from a given date:
 
+```php
     $newDate = $date->addDaysTo(
         Carbon::createFromDate(2018, 5, 14), 
         10
@@ -41,10 +45,13 @@ You can also add or subtract days from a given date:
         Carbon::createFromDate(2018, 5, 14), 
         10
     );
+```
 
 ## Installation
 
+```
     composer require code16/carbon-business-days
+```
 
 ## License
 
