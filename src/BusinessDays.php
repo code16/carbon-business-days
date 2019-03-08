@@ -139,6 +139,18 @@ class BusinessDays
     }
 
     /**
+     * @param Carbon $from
+     * @param Carbon $to
+     * @return int
+     */
+    public function hoursBetween(Carbon $from, Carbon $to): int
+    {
+        return $from->diffInHoursFiltered(function(Carbon $day) {
+            return $this->isOpenedDay($day);
+        }, $to);
+    }
+
+    /**
      * @param Carbon $date
      * @param int $days
      * @return Carbon
