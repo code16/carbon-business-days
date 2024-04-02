@@ -3,19 +3,20 @@
 namespace Code16\CarbonBusiness;
 
 use Carbon\Carbon;
+use Carbon\CarbonInterface;
 
 class BusinessDays
 {
     /** @var array */
-    protected $weekendDays = [
-        Carbon::SATURDAY+1, Carbon::SUNDAY+1
+    protected array $weekendDays = [
+        CarbonInterface::SATURDAY+1, CarbonInterface::SUNDAY+1
     ];
 
     /** @var array */
-    protected $holidays = [];
+    protected array $holidays = [];
 
     /** @var array */
-    protected $closedDays = [];
+    protected array $closedDays = [];
 
     /**
      * @param array $weekendDays
@@ -62,7 +63,7 @@ class BusinessDays
      */
     public function removeHoliday(Carbon $date): self
     {
-        if($k = array_search($date->format("Ymd"),$this->holidays) !== false) {
+        if($k = in_array($date->format("Ymd"),$this->holidays) !== false) {
             array_splice($this->holidays, $k, 1);
         }
 
@@ -75,7 +76,7 @@ class BusinessDays
      */
     public function isWeekendDay(Carbon $day): bool
     {
-        return array_search($day->dayOfWeek + 1, $this->weekendDays) !== false;
+        return in_array($day->dayOfWeek + 1, $this->weekendDays) !== false;
     }
 
     /**
@@ -84,7 +85,7 @@ class BusinessDays
      */
     public function isHoliday(Carbon $date): bool
     {
-        return array_search($date->format("Ymd"), $this->holidays) !== false;
+        return in_array($date->format("Ymd"), $this->holidays) !== false;
     }
 
     /**
@@ -110,7 +111,7 @@ class BusinessDays
      */
     public function removeClosedDay(Carbon $date): self
     {
-        if($k = array_search($date->format("Ymd"), $this->closedDays) !== false) {
+        if($k = in_array($date->format("Ymd"), $this->closedDays)) {
             array_splice($this->closedDays, $k, 1);
         }
 
@@ -123,7 +124,7 @@ class BusinessDays
      */
     public function isClosed(Carbon $date): bool
     {
-        return array_search($date->format("Ymd"), $this->closedDays) !== false;
+        return in_array($date->format("Ymd"), $this->closedDays);
     }
 
     /**
@@ -200,7 +201,7 @@ class BusinessDays
     /**
      * @return array
      */
-    public function getClosedDays()
+    public function getClosedDays(): array
     {
         return array_map(function($date) {
             return Carbon::createFromFormat('Ymd', $date)->startOfDay();
@@ -210,7 +211,7 @@ class BusinessDays
     /**
      * @return array
      */
-    public function getHolidays()
+    public function getHolidays(): array
     {
         return array_map(function($date) {
             return Carbon::createFromFormat('Ymd', $date)->startOfDay();
