@@ -15,35 +15,35 @@ class CarbonBusinessDaysBetweenTest extends TestCase
         $date = new BusinessDays();
 
         $this->assertEquals(1, $date->daysBetween(
-            Carbon::createFromDate(2018, 5, 14), // Monday
-            Carbon::createFromDate(2018, 5, 15)
+            Carbon::createFromDate(2018, 5, 14)->startOfDay(), // Monday
+            Carbon::createFromDate(2018, 5, 15)->startOfDay()
         ));
 
         $this->assertEquals(3, $date->daysBetween(
-            Carbon::createFromDate(2018, 5, 14), // Monday
-            Carbon::createFromDate(2018, 5, 17)
+            Carbon::createFromDate(2018, 5, 14)->startOfDay(), // Monday
+            Carbon::createFromDate(2018, 5, 17)->startOfDay()
         ));
 
         $this->assertEquals(5, $date->daysBetween(
-            Carbon::createFromDate(2018, 5, 14), // Monday
-            Carbon::createFromDate(2018, 5, 21)
+            Carbon::createFromDate(2018, 5, 14)->startOfDay(), // Monday
+            Carbon::createFromDate(2018, 5, 21)->startOfDay()
         ));
 
         $this->assertEquals(1, $date->daysBetween(
-            Carbon::createFromDate(2018, 5, 13), // Sunday
-            Carbon::createFromDate(2018, 5, 15)
+            Carbon::createFromDate(2018, 5, 13)->startOfDay(), // Sunday
+            Carbon::createFromDate(2018, 5, 15)->startOfDay()
         ));
 
         $this->assertEquals(1, $date->daysBetween(
-            Carbon::createFromDate(2018, 5, 12), // Saturday
-            Carbon::createFromDate(2018, 5, 15)
+            Carbon::createFromDate(2018, 5, 12)->startOfDay(), // Saturday
+            Carbon::createFromDate(2018, 5, 15)->startOfDay()
         ));
 
         $date->setWeekendDays([Carbon::SUNDAY]);
 
         $this->assertEquals(2, $date->daysBetween(
-            Carbon::createFromDate(2018, 5, 12), // Saturday
-            Carbon::createFromDate(2018, 5, 15)
+            Carbon::createFromDate(2018, 5, 12)->startOfDay(), // Saturday
+            Carbon::createFromDate(2018, 5, 15)->startOfDay()
         ));
     }
 
@@ -59,32 +59,32 @@ class CarbonBusinessDaysBetweenTest extends TestCase
         ));
 
         $this->assertEquals(1, $date->daysBetween(
-            Carbon::createFromDate(2018, 5, 14), // Monday
-            Carbon::createFromDate(2018, 5, 16)
+            Carbon::createFromDate(2018, 5, 14)->startOfDay(), // Monday
+            Carbon::createFromDate(2018, 5, 16)->startOfDay()
         ));
 
         $this->assertEquals(1, $date->daysBetween(
-            Carbon::createFromDate(2018, 5, 13), // Sunday
-            Carbon::createFromDate(2018, 5, 16)
+            Carbon::createFromDate(2018, 5, 13)->startOfDay(), // Sunday
+            Carbon::createFromDate(2018, 5, 16)->startOfDay()
         ));
 
         $this->assertEquals(2, $date->daysBetween(
-            Carbon::createFromDate(2018, 5, 13), // Sunday
-            Carbon::createFromDate(2018, 5, 17)
+            Carbon::createFromDate(2018, 5, 13)->startOfDay(), // Sunday
+            Carbon::createFromDate(2018, 5, 17)->startOfDay()
         ));
 
         $date->addHoliday(Carbon::createFromDate(2018, 5, 16));
 
         $this->assertEquals(1, $date->daysBetween(
-            Carbon::createFromDate(2018, 5, 13), // Sunday
-            Carbon::createFromDate(2018, 5, 17)
+            Carbon::createFromDate(2018, 5, 13)->startOfDay(), // Sunday
+            Carbon::createFromDate(2018, 5, 17)->startOfDay()
         ));
 
         $date->removeHoliday(Carbon::createFromDate(2018, 5, 16));
 
         $this->assertEquals(2, $date->daysBetween(
-            Carbon::createFromDate(2018, 5, 13), // Sunday
-            Carbon::createFromDate(2018, 5, 17)
+            Carbon::createFromDate(2018, 5, 13)->startOfDay(), // Sunday
+            Carbon::createFromDate(2018, 5, 17)->startOfDay()
         ));
     }
 
@@ -98,8 +98,8 @@ class CarbonBusinessDaysBetweenTest extends TestCase
             );
 
         $this->assertEquals(1, $date->daysBetween(
-            Carbon::createFromDate(2018, 5, 11), // Friday
-            Carbon::createFromDate(2018, 5, 20)
+            Carbon::createFromDate(2018, 5, 11)->startOfDay(), // Friday
+            Carbon::createFromDate(2018, 5, 20)->startOfDay()
         ));
 
         $this->assertEquals(0, $date->daysBetween(
@@ -108,15 +108,15 @@ class CarbonBusinessDaysBetweenTest extends TestCase
         ));
 
         $this->assertEquals(1, $date->daysBetween(
-            Carbon::createFromDate(2018, 5, 14), // Monday
-            Carbon::createFromDate(2018, 5, 22)
+            Carbon::createFromDate(2018, 5, 14)->startOfDay(), // Monday
+            Carbon::createFromDate(2018, 5, 22)->startOfDay()
         ));
 
         $date->removeClosedDay(Carbon::createFromDate(2018, 5, 15));
 
         $this->assertEquals(2, $date->daysBetween(
-            Carbon::createFromDate(2018, 5, 11), // Friday
-            Carbon::createFromDate(2018, 5, 20)
+            Carbon::createFromDate(2018, 5, 11)->startOfDay(), // Friday
+            Carbon::createFromDate(2018, 5, 20)->startOfDay()
         ));
     }
 }
